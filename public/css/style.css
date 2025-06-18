@@ -1,3 +1,13 @@
+body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container{
+    flex: 1;
+}
+
 .navbar{
     height: 5rem;
     background-color: white;
@@ -56,7 +66,7 @@
 .card-price {
     font-weight: 400;
 }
-/* Image in the card */
+
 .listing-img {
   height: 20rem;
   width: 100%;
@@ -64,12 +74,10 @@
   transition: transform 0.3s ease, filter 0.3s ease;
 }
 
-/* Container for overlay on hover */
 .position-relative {
   position: relative;
 }
 
-/* Overlay that appears on hover */
 .listing-overlay {
   position: absolute;
   top: 0;
@@ -85,16 +93,78 @@
   align-items: center;
   flex-direction: column;
   transition: opacity 0.3s ease-in-out;
-  padding-top: 4rem; /* <-- this line moves content lower */
+  padding-top: 4rem; 
 }
 
-/* Show overlay on hover */
+
 .position-relative:hover .listing-overlay {
   opacity: 1;
 }
 
-/* Optional: Add hover zoom effect */
 .listing-card:hover .listing-img {
   transform: scale(1.05);
   filter: brightness(0.8);
+}
+/*new page*/
+.add-btn,
+.btn-primary{
+    background-color:  rgb(221, 48, 48) !important;
+    border: none !important;
+}
+
+
+.show-img{
+    height: 30vh;
+}
+
+.btns{
+  display: flex;
+  justify-content: center;
+  gap: 3rem; 
+  margin-top: 1rem;
+}
+
+
+.btns .edit-btn {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.btns .edit-btn:hover {
+  background-color: #bb2d3b;
+}
+
+
+.btns .delete-btn {
+  background-color: #212529;
+  color: white;
+  border: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.btns .delete-btn:hover {
+  background-color: #343a40;
+}
+
+.show-card{
+    padding-left: 0;
+    padding-right: 0;
+}
+.btn-view {
+  background-color: rgb(221, 48, 48) !important; 
+  color: white !important;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.btn-view:hover {
+  background-color: #c62828 !important; 
+  transform: scale(1.03);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }

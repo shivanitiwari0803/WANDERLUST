@@ -21,7 +21,8 @@
             <div class="card-body">
               <h5 class="card-title"><%= listing.title %></h5>
               <p class="card-price text-muted">&#8377; <%= listing.price.toLocaleString("en-IN") %> / night</p>
-              <a href="/listings/<%= listing._id %>" class="btn btn-outline-primary w-100">View Details</a>
+              <a href="/listings/<%= listing._id %>" class="btn btn-view w-100">View Details</a>
+
             </div>
           </div>
         </div>
