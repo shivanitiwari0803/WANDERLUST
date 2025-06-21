@@ -1,32 +1,29 @@
 <% layout('layouts/boilerplate') %>
 
-<body>
-  <h3 class="text-center my-4">All Listings</h3>
-  <div class="container">
-    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 g-4">
-      <% for (let listing of allListings) { %>
-        <div class="col">
-          <div class="card shadow-sm rounded overflow-hidden listing-card">
-            
-            <!-- Image + Overlay -->
-            <div class="position-relative">
-              <img src="<%= listing.image.url %>" class="card-img-top listing-img" alt="listing image">
-              <div class="listing-overlay">
-                <h5 class="text-white fw-bold mb-1"><%= listing.title %></h5>
-                <small><%= listing.location %>, <%= listing.country %></small>
-              </div>
-            </div>
+<h3 class="text-center my-4">All Listings</h3>
+<div class="container">
+  <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 g-4">
+    <% for (let listing of allListings) { %>
+      <div class="col">
+        <div class="card shadow-sm rounded overflow-hidden listing-card">
 
-            <!-- Card Body -->
-            <div class="card-body">
-              <h5 class="card-title"><%= listing.title %></h5>
-              <p class="card-price text-muted">&#8377; <%= listing.price.toLocaleString("en-IN") %> / night</p>
-              <a href="/listings/<%= listing._id %>" class="btn btn-view w-100">View Details</a>
-
+          <!-- Image + Overlay -->
+          <div class="position-relative">
+            <img src="<%= listing.image.url %>" class="card-img-top listing-img" alt="listing image">
+            <div class="listing-overlay">
+              <h5 class="text-white fw-bold mb-1"><%= listing.title %></h5>
+              <small><%= listing.location %>, <%= listing.country %></small>
             </div>
           </div>
+
+          <!-- Card Body -->
+          <div class="card-body">
+            <h5 class="card-title"><%= listing.title %></h5>
+            <p class="card-price text-muted">&#8377; <%= Number(listing.price).toLocaleString("en-IN") %> / night</p>
+            <a href="/listings/<%= listing._id %>" class="btn btn-view w-100">View Details</a>
+          </div>
         </div>
-      <% } %>
-    </div>
+      </div>
+    <% } %>
   </div>
-</body>
+</div>
