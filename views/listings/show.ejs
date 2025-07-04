@@ -29,18 +29,7 @@
   <hr>
   <h4>Reviews</h4>
 
-  <% if (listing.reviews.length === 0) { %>
-    <p class="text-muted">No reviews yet.</p>
-  <% } else { %>
-    <ul class="list-group mb-4">
-      <% listing.reviews.forEach(review => { %>
-        <li class="list-group-item">
-          <strong>⭐ Rating:</strong> <%= review.rating %><br />
-          <strong>💬 Comment:</strong> <%= review.comment %>
-        </li>
-      <% }) %>
-    </ul>
-  <% } %>
+  
 
 
   <form action="/listings/<%= listing._id %>/reviews" method="POST"
@@ -63,7 +52,20 @@
     <button type="submit" class="btn btn-primary">Submit Review</button>
   </form>
 </div>
-
+<% if (listing.reviews.length === 0) { %>
+  <p class="text-muted">No reviews yet.</p>
+<% } else { %>
+  <div class="review-cards-container">
+    <% listing.reviews.forEach(review => { %>
+      <div class="card mb-3 shadow-sm border-0 review-card">
+        <div class="card-body">
+          <h6 class="card-subtitle mb-2 text-primary">⭐ Rating: <%= review.rating %> / 5</h6>
+          <p class="card-text">💬 <%= review.comment %></p>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+<% } %>
 
 <script>
 

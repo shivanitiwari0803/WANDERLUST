@@ -169,3 +169,43 @@ body{
   transform: scale(1.03);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
+
+/* review */
+.review-cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 25px;
+}
+
+.review-card {
+  border-radius: 10px;
+  background: linear-gradient(135deg, #fdfbfb, #ebedee);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 1px solid #e2e8f0;
+  padding: 0.75rem 1rem;
+}
+
+.review-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.review-card .card-body {
+  padding: 0;
+}
+
+.card-subtitle {
+  font-size: 0.95rem;
+  color: #2b6cb0; 
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.card-text {
+  font-size: 0.92rem;
+  color: #4a5568; 
+  line-height: 1.4;
+}
