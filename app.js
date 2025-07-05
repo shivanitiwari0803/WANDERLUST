@@ -131,11 +131,15 @@ app.post("/listings/:id/reviews", validateReview, wrapAsync(async (req, res) => 
 
 
 
-app.get("/listings", async (req, res) => {
-  const allListings = await Listing.find({}).populate("reviews");
-  res.render("listings/index", { allListings });
-});
 
+
+//reviews delete
+app.delete("/listings/:id/reviews/:reviewId", wrapAsync(async (req, res) => {
+    const { id, reviewId } = req.params;
+    await Listing.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
+    await Review.findByIdAndDelete(reviewId);
+    res.redirect(`/listings/${id}`);
+}));
 
 
 
