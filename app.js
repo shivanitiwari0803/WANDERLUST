@@ -12,6 +12,7 @@ const ExpressError = require("./utils/ExpressError");
 const {listingSchema , reviewSchema} = require("./schema.js");
 const review = require('./models/review.js');
 const listings =require("./routes/listing.js")
+const reviews =require("./routes/review.js")
 
 
 const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
@@ -41,72 +42,8 @@ app.get("/",(req,res)=>{
 })
 
 
-
-
-const validateReview =(req,res,next)=>{
-    let {error} = reviewSchema.validate(req.body)
-     if(error){
-        let errMsg = error.details.map((el) => el.message).join(",")
-        throw new ExpressError(400, errMsg )
-     } else{
-        next();
-     }
-}
-
 app.use("/listings",listings)
-
-
-
-
-
-
-
-
-
-
-//reviews
-app.post("/listings/:id/reviews", validateReview, wrapAsync(async (req, res) => {
-  let listing = await Listing.findById(req.params.id);
-  let newReview = new Review(req.body.review);
-  listing.reviews.push(newReview);
-
-  await newReview.save();
-  await listing.save();
-
-  res.redirect(`/listings/${listing._id}`);
-}));
-
-
-
-
-
-//reviews delete
-app.delete("/listings/:id/reviews/:reviewId", wrapAsync(async (req, res) => {
-    const { id, reviewId } = req.params;
-    await Listing.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
-    await Review.findByIdAndDelete(reviewId);
-    res.redirect(`/listings/${id}`);
-}));
-
-
-
-// app.get("/testlistings", async (req,res)=>{
-//     let sampleListing = new Listing({
-//         title : "My New House",
-//         Description : "by the road",
-//         price : 3400,
-//         location :"paris",
-//         country : "Europe"
-//     })
-//    await sampleListing.save();
-//    console.log("sample was saved ")
-//    res.send("successfully saved")
-// })
-
-
-// app.all("*", (req, res, next) => {
-//     next(new ExpressError(404, "Page not found"));
-// });
+app.use("/listings/:id/reviews",reviews)
 
 
 
