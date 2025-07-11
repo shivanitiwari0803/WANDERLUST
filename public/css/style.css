@@ -1,111 +1,203 @@
-body{
+body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
 
-.container{
+.container {
     flex: 1;
 }
 
-.navbar{
+.navbar {
     height: 5rem;
     background-color: white;
 }
-.fa-compass{
-    color:  rgb(221, 48, 48);
+
+.fa-compass {
+    color: rgb(221, 48, 48);
     font-size: 2rem;
 }
-.nav-link{
+
+.nav-link {
     color: #222222 !important;
 }
-.f-info-links a {
-    text-decoration: none;
-    color: #222222;
-}
-.f-info-links a:hover {
-    text-decoration: underline;
-    color: #ff1818e3;
-}
-.f-info{
+
+/* Footer */
+.f-info {
     display: flex;
     height: 8rem;
     background-color: hsla(0, 1%, 80%, 0.966);
     flex-wrap: wrap;
     justify-content: center;
-    align-items: space evenly;
+    align-items: center; /* Fixed alignment */
     text-align: center;
 }
+
+.f-info-links a {
+    text-decoration: none;
+    color: #222222;
+}
+
+.f-info-links a:hover {
+    text-decoration: underline;
+    color: #ff1818e3;
+}
+
 .f-info-links,
 .f-info-socials,
-.f-info-brands{
+.f-info-brands {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.f-info-socials i{
+.f-info-socials i {
     font-size: 1.2rem;
     margin-right: 1rem;
 }
-.card{
+
+/* Cards */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    flex: 1;
+}
+
+.navbar {
+    height: 5rem;
+    background-color: white;
+}
+
+.fa-compass {
+    color: rgb(221, 48, 48);
+    font-size: 2rem;
+}
+
+.nav-link {
+    color: #222222 !important;
+}
+
+/* Footer */
+.f-info {
+    display: flex;
+    height: 8rem;
+    background-color: hsla(0, 1%, 80%, 0.966);
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center; /* Fixed alignment */
+    text-align: center;
+}
+
+.f-info-links a {
+    text-decoration: none;
+    color: #222222;
+}
+
+.f-info-links a:hover {
+    text-decoration: underline;
+    color: #ff1818e3;
+}
+
+.f-info-links,
+.f-info-socials,
+.f-info-brands {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.f-info-socials i {
+    font-size: 1.2rem;
+    margin-right: 1rem;
+}
+
+/* Cards */
+.card {
     border: none !important;
     margin-bottom: 2rem;
 }
-.card-img-top{
+
+.card-img-top {
     border-radius: 1rem !important;
     width: 100% !important;
     object-fit: cover !important;
 }
 
-.card-body{
+.card-body {
     padding: 0 !important;
-
 }
+
 .card-price {
     font-weight: 400;
 }
 
+/* Listing Image */
 .listing-img {
-  height: 20rem;
-  width: 100%;
-  object-fit: cover;
-  transition: transform 0.3s ease, filter 0.3s ease;
+    height: 20rem;
+    width: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    border-radius: 1rem;
 }
 
+/* Overlay */
 .position-relative {
-  position: relative;
+    position: relative;
 }
 
 .listing-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(2px);
-  color: white;
-  opacity: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  transition: opacity 0.3s ease-in-out;
-  padding-top: 4rem; 
-  
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.45); /* Slightly dark overlay */
+    color: white;
+    opacity: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease;
+    text-align: center;
+    padding: 1rem;
+    border-radius: 1rem;
+    pointer-events: none;
 }
-
 
 .position-relative:hover .listing-overlay {
-  opacity: 1;
+    opacity: 1;
+    pointer-events: auto;
+    transform: scale(1.02);
 }
 
-.listing-card:hover .listing-img {
-  transform: scale(1.05);
-  filter: brightness(0.8);
+.listing-overlay h5,
+.listing-overlay p {
+    margin: 0.5rem 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+    transform: translateY(10px);
 }
+
+.position-relative:hover .listing-overlay h5,
+.position-relative:hover .listing-overlay p {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Hover zoom and brightness */
+.listing-card:hover .listing-img {
+    transform: scale(1.05);
+    filter: brightness(0.8);
+}
+
+
 /*new page*/
 .add-btn,
 .btn-primary{
