@@ -4,13 +4,25 @@
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+    
+    <div class="navbar-box shadow-box">
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-link"  href="#">Home</a>
-        <a class="nav-link" href="/listings">All listings</a>
-        <a class="nav-link" href="/listings/new">Add new listing</a>
+        <a class="nav-link hover-link"  href="#">Home</a>
+        <a class="nav-link hover-link" href="/listings">All listings</a>
+        <a class="nav-link hover-link" href="/listings/new">Add new listing</a>
         
       </div>
+
+      <div class="navbar-nav ms-auto">
+        <% if(!currentUser) { %>
+        <a class="nav-link hover-link"  href="/signUp">Sign Up</a>
+        <a class="nav-link hover-link" href="/login">Login</a>
+        <% } else { %>
+        <a class="nav-link hover-link logout-btn" href="/logout">Logout</a>
+        <% } %>
+      </div>
     </div>
+  </div>
   </div>
 </nav>

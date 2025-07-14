@@ -13,7 +13,7 @@ const flash = require('connect-flash')
 const passport = require('passport')
 const localStrategy = require('passport-local')
 const user = require('./models/user.js')
-
+const { isLoggedIn } = require("./middleware.js");
 
 const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
 
@@ -67,6 +67,8 @@ passport.deserializeUser(user.deserializeUser())
 app.use((req,res,next)=>{
   res.locals.success = req.flash("success")
   res.locals.error = req.flash("error")
+  res.locals.currentUser = req.user
+  // console.log(res.locals.currentUser);
   next()
 })
  

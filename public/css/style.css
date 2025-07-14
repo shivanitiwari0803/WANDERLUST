@@ -50,6 +50,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 20px;
 }
 
 .f-info-socials i {
@@ -301,3 +302,64 @@ body {
   color: #4a5568; 
   line-height: 1.4;
 }
+
+.hover-link {
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+  padding-bottom: 2px;
+}
+
+.hover-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0%;
+  background-color: red;
+  transition: width 0.3s ease;
+}
+
+.hover-link:hover::after {
+  width: 100%;
+}
+
+.navbar-box {
+  background-color: #fff;
+  padding: 15px 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  margin: 20px auto;
+  max-width: 1000px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+/* Hover underline */
+.hover-link {
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+  padding-bottom: 2px;
+  margin-right: 15px;
+}
+
+.hover-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0%;
+  background-color: red;
+  transition: width 0.3s ease;
+}
+
+.hover-link:hover::after {
+  width: 100%;
+}
+
+
