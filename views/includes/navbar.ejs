@@ -1,28 +1,41 @@
 <nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/"><i class="fa-solid fa-compass"></i></a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+
+    <!-- Logo / Brand -->
+    <a class="navbar-brand" href="/">
+      <i class="fa-solid fa-compass"></i>
+    </a>
+
+    <!-- Hamburger Toggler for Mobile -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    
-    <div class="navbar-box shadow-box">
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-link hover-link"  href="#">Home</a>
-        <a class="nav-link hover-link" href="/listings">All listings</a>
-        <a class="nav-link hover-link" href="/listings/new">Add new listing</a>
-        
-      </div>
 
-      <div class="navbar-nav ms-auto">
-        <% if(!currentUser) { %>
-        <a class="nav-link hover-link"  href="/signUp">Sign Up</a>
-        <a class="nav-link hover-link" href="/login">Login</a>
-        <% } else { %>
-        <a class="nav-link hover-link logout-btn" href="/logout">Logout</a>
-        <% } %>
+    <!-- Shadowed Box -->
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
+      <div class="navbar-box shadow-box w-100 px-4 py-2 rounded">
+        <div class="d-flex justify-content-between align-items-center w-100 flex-wrap">
+          
+          <!-- Left Nav Links -->
+          <div class="navbar-nav d-flex flex-row gap-3">
+            <a class="nav-link hover-link" href="/">Home</a>
+            <a class="nav-link hover-link" href="/listings">All Listings</a>
+            <a class="nav-link hover-link" href="/listings/new">Add New Listing</a>
+          </div>
+
+          <!-- Right Auth Buttons -->
+          <div class="navbar-nav d-flex flex-row gap-3">
+            <% if (!currentUser) { %>
+              <a class="nav-link hover-link" href="/login">Login</a>
+              <a class="nav-link hover-link" href="/signUp">Sign Up</a>
+            <% } else { %>
+              <a class="nav-link hover-link logout-btn" href="/logout">Logout</a>
+            <% } %>
+          </div>
+
+        </div>
       </div>
     </div>
-  </div>
   </div>
 </nav>
