@@ -17,7 +17,7 @@
   </div>
 </div>
 
-<% if (currentUser && currentUser._id.equals(listing.owner._id)) { %>
+<% if (currentUser && currentUser._id.toString() === listing.owner._id.toString()) { %>
   <div class="text-center mt-4 mb-4">
     <a href="/listings/<%= listing._id %>/edit" class="btn btn-warning me-2">Edit</a>
     <form action="/listings/<%= listing._id %>?_method=DELETE" method="POST" style="display:inline-block;">
@@ -62,12 +62,17 @@
       <% listing.reviews.forEach(review => { %>
         <div class="card mb-3 shadow-sm border-0 review-card">
           <div class="card-body">
-            <small class="text-muted d-block mb-1">Created by: @<%= review.author.username %></small>
+            <% if (review.author && review.author.username) { %>
+              <small class="text-muted d-block mb-1">Created by: @<%= review.author.username %></small>
+            <% } else { %>
+              <small class="text-muted d-block mb-1 text-danger">Author not found</small>
+            <% } %>
+
             <h6 class="card-subtitle mb-2 text-primary">⭐ Rating: <%= review.rating %> / 5</h6>
             <p class="card-text">💬 <%= review.comment %></p>
           </div>
 
-          <% if (currentUser && review.author._id.equals(currentUser._id)) { %>
+          <% if (currentUser && review.author && review.author._id.toString() === currentUser._id.toString()) { %>
             <form action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE" method="POST" class="mb-3">
               <button class="btn btn-danger btn-sm rounded shadow-sm">
                 <i class="bi bi-trash-fill"></i> Delete
