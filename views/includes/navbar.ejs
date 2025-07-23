@@ -1,37 +1,61 @@
-<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
-  <div class="container-fluid">
+<nav class="navbar navbar-expand-md border-bottom sticky-top custom-navbar">
+  <div class="container-fluid justify-content-center">
 
-    <!-- Logo / Brand -->
-    <a class="navbar-brand" href="/">
-      <i class="fa-solid fa-compass"></i>
-    </a>
+    <!-- Logo Container -->
+    <div class="logo-container">
+      <a class="navbar-brand" href="/listings">
+        <div class="logo-inner">
+          <i class="fa-solid fa-location-dot logo-icon"></i>
+          <span class="logo-text">Wanderlust</span>
+        </div>
+      </a>
+    </div>
 
-    <!-- Hamburger Toggler for Mobile -->
+
+
+    <!-- Hamburger Toggler -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
       aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <!-- Shadowed Box -->
+    <!-- Main Navbar Box -->
     <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
-      <div class="navbar-box shadow-box w-100 px-4 py-2 rounded">
-        <div class="d-flex justify-content-between align-items-center w-100 flex-wrap">
-          
+      <div class="navbar-box w-100">
+        <div class="d-flex justify-content-between align-items-center flex-wrap w-100 px-3 py-2">
+
           <!-- Left Nav Links -->
-          <div class="navbar-nav d-flex flex-row gap-3">
-            <a class="nav-link hover-link" href="/">Home</a>
-            <a class="nav-link hover-link" href="/listings">All Listings</a>
-            <a class="nav-link hover-link" href="/listings/new">Add New Listing</a>
+          <div class="navbar-nav d-flex flex-row gap-3 align-items-center">
+            <a class="nav-link hover-link" href="/listings">Explore</a>
+            <a class="nav-link hover-link" href="/listings/new">Start Hosting</a>
+            <a class="nav-link  " id="toggleFiltersBtn" style="cursor: pointer;">Apply Filters</a>
           </div>
+
+
+
 
           <!-- Right Auth Buttons -->
           <div class="navbar-nav d-flex flex-row gap-3">
+            <!-- Search Form -->
+           <form class="search-form d-flex" role="search" action="/listings/search" method="GET">
+  <div class="search-box">
+    <input class="form-control search-input" type="search" name="country" placeholder="Search by Country" aria-label="Search">
+    <button class="search-btn" type="submit">
+      <i class="fa-solid fa-magnifying-glass"></i>
+    </button>
+  </div>
+</form>
+
+
+
+
+
             <% if (!currentUser) { %>
-              <a class="nav-link hover-link" href="/login">Login</a>
-              <a class="nav-link hover-link" href="/signUp">Sign Up</a>
-            <% } else { %>
-              <a class="nav-link hover-link logout-btn" href="/logout">Logout</a>
-            <% } %>
+              <a class="nav-link hover-link" href="/login"><b>Login</b></a>
+              <a class="nav-link hover-link" href="/signUp"><b>Sign Up</b></a>
+              <% } else { %>
+                <a class="nav-link hover-link logout-btn" href="/logout">Logout</a>
+                <% } %>
           </div>
 
         </div>

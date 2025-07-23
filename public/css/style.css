@@ -1,50 +1,98 @@
-/* Global Styles */
+/* ------------------------------ */
+/* 🌐 GLOBAL STYLES               */
+/* ------------------------------ */
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: #F5FFFA !important;
+  background-color: #f8edeb !important;
 }
 
 .container {
   flex: 1;
 }
 
-/* Navbar */
+/* ------------------------------ */
+/* 🎯 NAVBAR STYLES               */
+/* ------------------------------ */
+
 .navbar {
-  height: 5rem;
-  background-color: #ffc2d1 !important;
+  height: 4rem;
+  background-color: rgb(172, 55, 55) !important;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
-.fa-compass {
-  color: rgb(221, 48, 48);
-  font-size: 2.7rem;
-  padding-left: 10px;
+.custom-navbar {
+  background-color: #fff;
+  z-index: 1000;
 }
 
 .nav-link {
   color: #222222 !important;
+  font: bold 1.1rem 'Poppins', sans-serif;
 }
 
-.navbar-box {
-  background-color: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  max-width: 1000px;
-  margin: auto;
+/* Logo Section */
+.logo-container {
+  height: 100%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
+  justify-content: center;
 }
 
+.logo-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.logo-icon {
+  font-size: 1.6rem;
+  color: white;
+  transition: font-size 0.25s ease, transform 0.25s ease;
+  margin-right: 8px;
+  margin-top: 19px;
+}
+
+.logo-inner:hover .logo-icon {
+  font-size: 1rem;
+  transform: translateY(2px);
+}
+
+.logo-text {
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+  color: white;
+  opacity: 0;
+  transform: scale(0.8) translateX(-10px);
+  transition: all 0.4s ease-in-out;
+  margin-left: 10px;
+  white-space: nowrap;
+}
+
+.navbar-brand:hover .logo-text,
+.logo-inner:hover .logo-text {
+  opacity: 1;
+  transform: scale(1) translateX(0);
+}
+
+/* Underline Hover Effect */
 .hover-link {
   position: relative;
   text-decoration: none;
-  color: inherit;
-  padding-bottom: 2px;
+  color: whitesmoke !important;
   font-weight: 500;
   margin-right: 15px;
+  padding-bottom: 2px;
 }
 
 .hover-link::after {
@@ -54,7 +102,7 @@ body {
   bottom: 0;
   height: 2px;
   width: 0%;
-  background-color: red;
+  background-color: white;
   transition: width 0.3s ease;
 }
 
@@ -62,54 +110,41 @@ body {
   width: 100%;
 }
 
-/* Footer */
-.f-info {
-  display: flex;
-  height: 8rem;
-  background-color: hsla(0, 1%, 80%, 0.966);
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
+/* ------------------------------ */
+/* 🔍 SEARCH STYLES               */
+/* ------------------------------ */
 
-.f-info-links,
-.f-info-socials,
-.f-info-brands {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-}
-
-.f-info-links a {
-  text-decoration: none;
-  color: #222222;
-}
-
-.f-info-links a:hover {
-  text-decoration: underline;
-  color: #ff1818e3;
-}
-
-.f-info-socials i {
-  font-size: 1.2rem;
-  margin-right: 1rem;
-  transition: color 0.3s ease, transform 0.3s ease;
+.navbar-nav i.fa-magnifying-glass {
+  font-size: 1.1rem;
+  color: #555;
+  margin-left: -35px;
   cursor: pointer;
+  transition: color 0.2s ease, transform 0.2s ease;
+  z-index: 2;
+  padding-top: 11px;
 }
 
-.f-info-socials i:hover {
-  color: rgb(221, 48, 48); 
+.navbar-nav i.fa-magnifying-glass:hover {
+  color: #28a745;
   transform: scale(1.1);
 }
 
+/* ------------------------------ */
+/* 🖼️ CARD STYLES                 */
+/* ------------------------------ */
 
-/* Cards */
 .card {
+  background: rgb(249, 235, 235);
   border: none !important;
-  margin-bottom: 3rem;
+  border-radius: 1rem !important;
+  margin-bottom: 2rem;
+  padding-bottom: 0.5rem;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
 }
 
 .card-img-top {
@@ -118,21 +153,35 @@ body {
   object-fit: cover !important;
 }
 
-.card-body {
-  padding: 0 !important;
-}
-
 .card-price {
   font-weight: 400;
 }
 
-/* Listing Image */
+/* Listing-specific cards */
+.show-card {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.show-img {
+  height: 30vh;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  margin-top: 0.5rem;
+}
+
+/* ------------------------------ */
+/* 🖼️ LISTING IMAGE & HOVER       */
+/* ------------------------------ */
+
 .listing-img {
-  height: 20rem;
+  height: 16rem;
   width: 100%;
   object-fit: cover;
+  border-radius: 1rem !important;
   transition: transform 0.3s ease, filter 0.3s ease;
-  border-radius: 1rem;
 }
 
 .listing-card:hover .listing-img {
@@ -140,7 +189,7 @@ body {
   filter: brightness(0.8);
 }
 
-/* Overlay */
+/* Listing overlay */
 .position-relative {
   position: relative;
 }
@@ -166,17 +215,16 @@ body {
 }
 
 .position-relative:hover .listing-overlay {
-  opacity: 1;
-  pointer-events: auto;
-  transform: scale(1.02);
+  opacity: 0;
+  transform: none;
 }
 
 .listing-overlay h5,
 .listing-overlay p {
   margin: 0.5rem 0;
-  transition: transform 0.3s ease, opacity 0.3s ease;
   opacity: 0;
   transform: translateY(10px);
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .position-relative:hover .listing-overlay h5,
@@ -185,20 +233,26 @@ body {
   transform: translateY(0);
 }
 
-/* Listings Grid Layout */
+/* ------------------------------ */
+/* 🧱 LISTING GRID LAYOUT         */
+/* ------------------------------ */
+
 .listings-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2.5rem;
+  gap: 4rem;
   padding: 1rem 1.5rem;
   margin-top: 2rem;
 }
 
 .card-wrapper {
-  padding: 12px;
+  padding: 0.75rem;
 }
 
-/* Buttons */
+/* ------------------------------ */
+/* 🔘 BUTTON STYLES               */
+/* ------------------------------ */
+
 .btn-primary,
 .add-btn {
   background-color: rgb(221, 48, 48) !important;
@@ -225,13 +279,17 @@ body {
   margin-top: 1rem;
 }
 
-.btns .edit-btn {
-  background-color: #dc3545;
+.btns .edit-btn,
+.btns .delete-btn {
   color: white;
   border: none;
   padding: 0.5rem 1.2rem;
   border-radius: 6px;
   transition: background-color 0.3s ease;
+}
+
+.btns .edit-btn {
+  background-color: #dc3545;
 }
 
 .btns .edit-btn:hover {
@@ -240,23 +298,35 @@ body {
 
 .btns .delete-btn {
   background-color: #212529;
-  color: white;
-  border: none;
-  padding: 0.5rem 1.2rem;
-  border-radius: 6px;
-  transition: background-color 0.3s ease;
 }
 
 .btns .delete-btn:hover {
   background-color: #343a40;
 }
 
-/* Show page image */
-.show-img {
-  height: 30vh;
+/* ------------------------------ */
+/* ✏️ EDIT FORM STYLES           */
+/* ------------------------------ */
+
+.edit-form-card {
+  background-color: #ffffff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border-radius: 1.5rem;
+  transition: transform 0.3s ease;
 }
 
-/* Review Section */
+.edit-form-card:hover {
+  transform: translateY(-3px);
+}
+
+.edit-form-card label {
+  font-weight: bold;
+}
+
+/* ------------------------------ */
+/* 💬 REVIEW SECTION              */
+/* ------------------------------ */
+
 .review-cards-container {
   display: flex;
   flex-direction: column;
@@ -293,4 +363,251 @@ body {
   font-size: 0.92rem;
   color: #4a5568;
   line-height: 1.4;
+}
+
+.review-btns {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+/* ------------------------------ */
+/* 📄 FOOTER                      */
+/* ------------------------------ */
+
+.f-info {
+  display: flex;
+  height: 8rem;
+  background-color: rgb(172, 55, 55) !important;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.f-info-links,
+.f-info-socials,
+.f-info-brands {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  color: white;
+}
+
+.f-info-links a {
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.f-info-links a:hover {
+  text-decoration: underline;
+}
+
+.f-info-socials i {
+  font-size: 1.5rem;
+  margin-right: 1rem;
+  transition: color 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+}
+
+.f-info-socials i:hover {
+  color: white;
+  transform: scale(1.1);
+}
+
+/* ------------------------------ */
+/* 🧾 OTHER STYLES                */
+/* ------------------------------ */
+
+.tax-info {
+  transition: all 0.3s ease-in-out;
+}
+
+/* Filter Toggle Button */
+#toggleFiltersBtn {
+  position: relative;
+  color: whitesmoke !important;
+  background: none;
+  border: none;
+  padding: 0;
+  margin-right: 15px;
+  font: 500 1.1rem 'Poppins', sans-serif;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+#toggleFiltersBtn::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background-color: white;
+  transition: width 0.3s ease;
+}
+
+#toggleFiltersBtn:hover::after {
+  width: 100%;
+}
+
+#toggleFiltersBtn:active {
+  box-shadow: none;
+}
+
+  #filters-container {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  #filters {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: #999 transparent;
+    -webkit-overflow-scrolling: touch;
+    gap: 1rem;
+    padding: 0.8rem 1rem;
+    width: max-content;
+  }
+
+  #filters::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  #filters::-webkit-scrollbar-thumb {
+    background-color: #999;
+    border-radius: 10px;
+  }
+
+  .filter {
+    flex: 0 0 auto;
+    text-align: center;
+    min-width: 80px;
+    font-size: 0.85rem;
+  }
+
+  .filter i {
+    font-size: 1.2rem;
+  }
+
+
+
+
+
+/* --------------------------- */
+/* 🔍 SEARCH STYLES            */
+/* --------------------------- */
+
+.search-input {
+  border-radius: 25px !important;
+}
+
+.search-box {
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.6rem 2.5rem 0.6rem 1rem;
+  border-radius: 25px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.search-btn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #333;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.search-btn:hover {
+  color: #000;
+}
+.search-btn i {
+  padding-bottom: 15px;
+}
+/* --------------------------- */
+/* 🧩 FILTER SCROLL BAR        */
+/* --------------------------- */
+
+#filters {
+  display: flex;
+  flex-wrap: nowrap;               /* Single line */
+  overflow-x: auto;                /* Scroll if needed */
+  background-color: #fdfdfd;
+  padding: 1rem;
+  border-radius: 20px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  max-width: 100%;
+  margin: 1rem auto;
+  gap: 1rem;                        /* Even spacing */
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;           /* Firefox */
+}
+
+#filters::-webkit-scrollbar {
+  display: none;                   /* Chrome/Safari/Edge */
+}
+
+.filter {
+  flex: 0 0 auto;                  /* Prevent shrinking */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0.7rem;
+  border-radius: 10px;
+  background-color: #f4f4f4;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  opacity: 0.85;
+  transition: all 0.3s ease;
+  width: 75px;
+  text-align: center;
+  scroll-snap-align: start;
+}
+
+.filter:hover {
+  opacity: 1;
+  background-color: #e9e9e9;
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+.filter i {
+  font-size: 1.3rem;
+  color: #333;
+  margin-bottom: 0.3rem;
+}
+
+.filter p {
+  font-size: 0.7rem;
+  color: #333;
+  margin: 0;
+  line-height: 1rem;
+}
+
+
+/* --------------------------- */
+/* 🎬 FILTER CONTAINER EFFECTS */
+/* --------------------------- */
+
+#filters-container {
+  display: none;
+  animation: fadeIn 0.4s ease forwards;
 }

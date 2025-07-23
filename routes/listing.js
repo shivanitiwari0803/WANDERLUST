@@ -6,20 +6,67 @@ const ExpressError = require("../utils/ExpressError");
 const Listing = require("../models/listings.js");
 const { isLoggedIn, isOwner, validateListing } = require("../middleware.js");
 const listingController = require("../controllers/listings.js");
+const multer = require("multer");
+const { storage } = require("../cloudconfig.js");
+const upload = multer({storage});
 
-//index route
-router.get("/", wrapAsync(listingController.index));
 
-//new route
-router.get("/new", isLoggedIn, listingController.renderNewForm);
+router
+  .route("/")
+  .get(wrapAsync(listingController.index))
+  .post(
+    isLoggedIn,
+    upload.single("image"),            
+    validateListing,                  
+    wrapAsync(listingController.createListing) 
+  );
 
-//show route
-router.get("/:id", wrapAsync(listingController.showListing));
+  //new route
+  router.get("/new", isLoggedIn, listingController.renderNewForm);
 
-//create route
-router.post("/", validateListing, wrapAsync(listingController.createListing));
 
-//edit route
+
+// Search by country route
+router.get("/search", async (req, res) => {
+  const { country } = req.query;
+  try {
+    let allListings = [];
+
+    if (country) {
+      allListings = await Listing.find({
+        country: { $regex: new RegExp(country, "i") }, // case-insensitive match
+      });
+    } else {
+      allListings = await Listing.find(); // fallback to all listings
+    }
+
+    res.render("listings/index", { allListings }); // pass correctly to EJS
+  } catch (err) {
+    console.error("Search failed:", err);
+    res.redirect("/listings");
+  }
+
+  console.log("Search query:", req.query);
+});
+
+
+
+
+  
+router
+  .route("/:id")
+  .get(wrapAsync(listingController.showListing))
+  .put(
+    isLoggedIn,
+    isOwner,
+    upload.single("image"),            
+
+    validateListing,
+    wrapAsync(listingController.updateListing)
+  )
+  .delete(isLoggedIn, isOwner, wrapAsync(listingController.deleteListing));
+
+  
 router.get(
   "/:id/edit",
   isLoggedIn,
@@ -27,21 +74,6 @@ router.get(
   wrapAsync(listingController.editListing)
 );
 
-// update route
-router.put(
-  "/:id",
-  isLoggedIn,
-  isOwner,
-  validateListing,
-  wrapAsync(listingController.updateListing)
-);
 
-//delete route
-router.delete(
-  "/:id",
-  isLoggedIn,
-  isOwner,
-  wrapAsync(listingController.deleteListing)
-);
 
 module.exports = router;

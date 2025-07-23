@@ -39,9 +39,12 @@ module.exports.signup = async (req, res) => {
 
 module.exports.login = (req, res) => {
   const redirectUrl = req.session.returnTo || "/listings";
-  delete req.session.returnTo; // cleanup
+  delete req.session.returnTo;
+
+  req.flash("success", "Welcome back!"); // ✅ This line was missing
   res.redirect(redirectUrl);
-}
+};
+
 
 
 module.exports.logout = (req, res) => {

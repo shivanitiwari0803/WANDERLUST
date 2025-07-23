@@ -1,38 +1,153 @@
 <% layout('layouts/boilerplate') %>
 
-<h3 class="text-center my-4">All Listings</h3>
+<!-- Filters Container -->
+<div id="filters-container" style="display: none;">
+  <div id="filters">
+    <a class="filter text-decoration-none text-dark" href="/listings?category=Trending">
+      <div><i class="fa-solid fa-fire"></i></div>
+      <p>Trending</p>
+    </a>
+    <a class="filter text-decoration-none text-dark" href="/listings?category=Rooms">
+      <div><i class="fa-solid fa-bed"></i></div>
+      <p>Rooms</p>
+    </a>
+    <a class="filter text-decoration-none text-dark" href="/listings?category=Iconic cities">
+      <div><i class="fa-solid fa-city"></i></div>
+      <p>Iconic cities</p>
+    </a>
+    <a class="filter text-decoration-none text-dark" href="/listings?category=Mountains">
+      <div><i class="fa-solid fa-mountain-sun"></i></div>
+      <p>Mountains</p>
+    </a>
+    <a class="filter text-decoration-none text-dark" href="/listings?category=Pools">
+      <div><i class="fa-solid fa-person-swimming"></i></div>
+      <p>Pools</p>
+    </a>
+    <a class="filter text-decoration-none text-dark" href="/listings?category=Camping">
+      <div><i class="fa-solid fa-tent"></i></div>
+      <p>Camping</p>
+    </a>
+    <a class="filter text-decoration-none text-dark" href="/listings?category=Beaches">
+      <div><i class="fa-solid fa-umbrella-beach"></i></div>
+      <p>Beaches</p>
+    </a>
+    <a class="filter text-decoration-none text-dark" href="/listings?category=Safari">
+      <div><i class="fa-solid fa-hippo"></i></div>
+      <p>Safari</p>
+    </a>
+    <a class="filter text-decoration-none text-dark" href="/listings?category=Adventure">
+      <div><i class="fa-solid fa-person-hiking"></i></div>
+      <p>Adventure</p>
+    </a>
+    <a class="filter text-decoration-none text-dark" href="/listings?category=Historical Places">
+      <div><i class="fa-solid fa-monument"></i></div>
+      <p>Historical Places</p>
+    </a>
+    <a class="filter text-decoration-none text-dark" href="/listings?category=Fishing">
+      <div><i class="fa-solid fa-fish"></i></div>
+      <p>Fishing</p>
+    </a>
+    <a class="filter text-decoration-none text-dark" href="/listings?category=Lakes">
+      <div><i class="fa-solid fa-water"></i></div>
+      <p>Lakes</p>
+    </a>
+    <a class="filter text-decoration-none text-dark" href="/listings?category=Religious spots">
+      <div><i class="fa-solid fa-gopuram"></i></div>
+      <p>Religious spots</p>
+    </a>
+    <a class="filter text-decoration-none text-dark" href="/listings?category=Hospitals">
+      <div><i class="fa-solid fa-hospital"></i></div>
+      <p>Hospitals</p>
+    </a>
+    <a class="filter text-decoration-none text-dark" href="/listings?category=Villages">
+  <div><i class="fa-solid fa-house-chimney"></i></div>
+  <p>Villages</p>
+</a>
 
+<a class="filter text-decoration-none text-dark" href="/listings?category=Cities">
+  <div><i class="fa-solid fa-building"></i></div>
+  <p>Cities</p>
+</a>
+  </div>
+
+  <!-- Tax Toggle -->
+  <div class="toggle-box mt-3 px-3">
+    <div class="form-check-reverse form-switch">
+      <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+      <label class="form-check-label" for="flexSwitchCheckDefault">Display Taxes</label>
+    </div>
+  </div>
+</div>
+
+<!-- Listings Grid -->
 <div class="container">
-  <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
+  <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
+    <% if (allListings.length === 0) { %>
+  <div class="text-center mt-5">
+    <h4 class="text-muted">No listings found in this category.</h4>
+  </div>
+<% } else { %>
     <% for (let listing of allListings) { %>
-      <div class="col card-wrapper"> <!-- 🔧 Added spacing wrapper here -->
+      <div class="col card-wrapper">
         <div class="card shadow-sm rounded overflow-hidden listing-card h-100">
-
-          <!-- Image + Overlay -->
+          <!-- Listing Image -->
           <div class="position-relative">
-            <img src="<%= listing.image.url %>" class="card-img-top listing-img" alt="listing image">
-            <div class="listing-overlay">
-              <h5 class="text-white fw-bold mb-1"><%= listing.title %></h5>
-              <small><%= listing.location %>, <%= listing.country %></small>
-            </div>
+            <a href="/listings/<%= listing._id %>">
+              <img src="<%= listing.image.url %>" class="card-img-top listing-img" alt="listing image"
+                onerror="this.src='/images/default.jpg'">
+            </a>
           </div>
 
-          <!-- Card Body -->
+          <!-- Card Content -->
           <div class="card-body">
             <h5 class="card-title"><%= listing.title %></h5>
             <p class="card-price text-muted">&#8377; <%= Number(listing.price).toLocaleString("en-IN") %> / night</p>
 
+            <!-- Tax Info -->
+            <p class="card-tax text-danger tax-info" style="display: none;">
+              Tax (10%): ₹ <%= (listing.price * 0.10).toFixed(2) %>
+            </p>
+
+            <!-- Reviews -->
             <% if (listing.reviews.length > 0) { %>
-              <p class="fst-italic text-secondary mb-2">“<%= listing.reviews[listing.reviews.length - 1].comment %>”</p>
+              <p class="fst-italic text-secondary mb-2">
+                “<%= listing.reviews[listing.reviews.length - 1].comment %>”
+              </p>
             <% } else { %>
               <p class="text-muted fst-italic mb-2">No reviews yet.</p>
             <% } %>
-
-            <a href="/listings/<%= listing._id %>" class="btn btn-view w-100">View Details</a>
           </div>
-
         </div>
       </div>
     <% } %>
+    <% } %>
   </div>
 </div>
+
+<!-- Toggle Filters JS -->
+<script>
+  const toggleBtn = document.getElementById('toggleFiltersBtn');
+  const filtersBox = document.getElementById('filters-container');
+
+  if (toggleBtn && filtersBox) {
+    toggleBtn.addEventListener('click', () => {
+      const isVisible = filtersBox.style.display === 'flex' || filtersBox.style.display === 'block';
+      filtersBox.style.display = isVisible ? 'none' : 'block';
+      toggleBtn.textContent = isVisible ? 'Show Filters' : 'Remove Filters';
+    });
+  }
+</script>
+
+<!-- Toggle Tax Info JS -->
+<script>
+  const taxToggle = document.getElementById('flexSwitchCheckDefault');
+  const taxElements = document.querySelectorAll('.tax-info');
+
+  if (taxToggle) {
+    taxToggle.addEventListener('change', () => {
+      taxElements.forEach(tax => {
+        tax.style.display = taxToggle.checked ? 'block' : 'none';
+      });
+    });
+  }
+</script>

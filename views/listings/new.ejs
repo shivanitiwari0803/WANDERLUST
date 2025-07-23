@@ -5,7 +5,7 @@
     <br><br>
     <h3 class="mb-4">Create New Listing</h3>
 
-    <form action="/listings" method="POST" novalidate class="needs-validation">
+    <form action="/listings" method="POST" novalidate class="needs-validation" enctype="multipart/form-data">
       <div class="mb-3">
         <label for="title" class="form-label">Title</label>
         <input name="listing[title]" id="title" type="text" class="form-control" placeholder="Enter title" required>
@@ -19,9 +19,11 @@
       </div>
 
       <div class="mb-3">
-        <label for="imageUrl" class="form-label">Image URL</label>
-        <input name="listing[image][url]" id="imageUrl" type="url" class="form-control" placeholder="Enter image URL" required>
-        <div class="invalid-feedback">Please enter a valid image URL.</div>
+        <label for="imageUrl" class="form-label">Upload Image </label>
+        <div class="mb-3">
+          <input name="image" id="image" type="file" class="form-control" required>
+          <div class="invalid-feedback">Please upload an image.</div>
+        </div>
       </div>
 
       <div class="row">
@@ -42,6 +44,22 @@
         <label for="country" class="form-label">Country</label>
         <input name="listing[country]" id="country" type="text" class="form-control" placeholder="Enter country" required>
         <div class="invalid-feedback">Please enter a country.</div>
+      </div>
+
+      <!-- Category Dropdown -->
+      <div class="mb-3">
+        <label for="category" class="form-label">Category</label>
+        <select name="listing[category]" id="category" class="form-select" required>
+          <option value="">Select a category</option>
+          <option value="Beaches">Beaches</option>
+          <option value="Camping">Camping</option>
+          <option value="Mountains">Mountains</option>
+          <option value="Desert">Desert</option>
+          <option value="Safari">Safari</option>
+          <option value="Forest">Forest</option>
+          <option value="Iconic Cities">Iconic Cities</option>
+        </select>
+        <div class="invalid-feedback">Please select a category.</div>
       </div>
 
       <button class="btn btn-primary w-100" type="submit">Add</button>
