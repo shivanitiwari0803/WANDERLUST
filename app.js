@@ -66,12 +66,6 @@ const sessionOptions = {
 };
 
 
-
-
-app.get("/", (req, res) => {
-  res.send("hello i am back again after my exams");
-});
-
 app.use(session(sessionOptions))
 app.use(flash())
 
@@ -106,6 +100,10 @@ app.use((req,res,next)=>{
 app.use("/listings", listingsRouter);
 app.use("/listings/:id/reviews", reviewsRouter);
 app.use("/", userRouter);
+
+app.get("/", (req, res) => {
+  res.redirect("/listings");
+});
 
 
 app.use((err, req, res, next) => {
