@@ -249,6 +249,7 @@ body {
   padding: 0.75rem;
 }
 
+
 /* ------------------------------ */
 /* 🔘 BUTTON STYLES               */
 /* ------------------------------ */
@@ -610,4 +611,108 @@ body {
 #filters-container {
   display: none;
   animation: fadeIn 0.4s ease forwards;
+}
+/* 🌐 RESPONSIVE FIXES FOR MOBILE VIEW */
+
+/* ---------- Navbar Responsive ---------- */
+@media (max-width: 768px) {
+  .navbar {
+    height: auto;
+    padding: 0.5rem 1rem;
+  }
+
+  .navbar-brand {
+    font-size: 1.2rem;
+  }
+
+  .nav-link {
+    font-size: 1rem;
+    padding: 0.3rem 0.6rem;
+  }
+
+  .logo-text {
+    font-size: 1.2rem;
+  }
+
+  .logo-icon {
+    font-size: 1.3rem;
+    margin-top: 0;
+  }
+}
+
+/* ---------- Cards & Buttons ---------- */
+@media (max-width: 576px) {
+  .listing-img,
+  .card-img-top,
+  .show-img {
+    height: auto !important;
+    max-height: 250px;
+    object-fit: cover;
+  }
+
+  .btns {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .btns .edit-btn,
+  .btns .delete-btn {
+    width: 100%;
+    padding: 0.75rem;
+  }
+}
+
+/* ---------- Search Input ---------- */
+@media (max-width: 576px) {
+  .search-box {
+    max-width: 100%;
+    padding: 0 1rem;
+  }
+
+  .search-input {
+    font-size: 0.95rem;
+    padding: 0.5rem 2.2rem 0.5rem 1rem;
+  }
+
+  .search-btn i {
+    padding-bottom: 12px;
+  }
+}
+
+/* ---------- Filters Section ---------- */
+@media (max-width: 768px) {
+  #filters {
+    gap: 0.5rem;
+    padding: 0.5rem;
+  }
+
+  .filter {
+    min-width: 65px;
+    width: 65px;
+    font-size: 0.75rem;
+  }
+
+  .filter i {
+    font-size: 1rem;
+  }
+
+  .filter p {
+    font-size: 0.65rem;
+  }
+}
+
+/* ---------- Footer Responsive ---------- */
+@media (max-width: 576px) {
+  .f-info {
+    flex-direction: column;
+    height: auto;
+    padding: 1rem;
+  }
+
+  .f-info-links,
+  .f-info-socials,
+  .f-info-brands {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
 }

@@ -88,7 +88,7 @@
   </div>
 <% } else { %>
     <% for (let listing of allListings) { %>
-      <div class="col card-wrapper">
+      <div class="col px-3 mb-4">
         <div class="card shadow-sm rounded overflow-hidden listing-card h-100">
           <!-- Listing Image -->
           <div class="position-relative">
@@ -111,7 +111,7 @@
             <!-- Reviews -->
             <% if (listing.reviews.length > 0) { %>
               <p class="fst-italic text-secondary mb-2">
-                “<%= listing.reviews[listing.reviews.length - 1].comment %>”
+              <%= listing.reviews[listing.reviews.length - 1].comment %>
               </p>
             <% } else { %>
               <p class="text-muted fst-italic mb-2">No reviews yet.</p>
